@@ -1,0 +1,23 @@
+name: mysite
+recipe: wordpress
+config:
+  php: '7.4'
+  webroot: .
+  via: nginx
+  xdebug: true
+  conf:
+    php: .vscode/php.ini
+proxy:
+  mailhog:
+    - mail.mysite.lndo.site
+  pma:
+    - db.mysite.lndo.site
+services:
+  mailhog:
+    type: mailhog
+    hogfrom:
+      - appserver
+  pma:
+    type: phpmyadmin
+    hosts:
+      - database
