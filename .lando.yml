@@ -1,17 +1,13 @@
 name: mysite
 recipe: wordpress
 config:
-  php: '7.4'
   webroot: .
+  php: '7.4'
   via: nginx
+  database: mariadb
   xdebug: true
-  conf:
-    php: .vscode/php.ini
-proxy:
-  mailhog:
-    - mail.mysite.lndo.site
-  pma:
-    - db.mysite.lndo.site
+  config:
+    php: .config/php.ini
 services:
   mailhog:
     type: mailhog
@@ -21,3 +17,8 @@ services:
     type: phpmyadmin
     hosts:
       - database
+proxy:
+  mailhog:
+    - mail.mysite.lndo.site
+  pma:
+    - db.mysite.lndo.site
