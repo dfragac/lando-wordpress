@@ -5,7 +5,7 @@ recipe: wordpress
 config:
   webroot: .
   php: '7.4'
-  via: nginx
+  via: apache
   database: mariadb
   xdebug: true
   ssl: true
@@ -26,6 +26,6 @@ services:
 
 proxy:
   mailhog:
-    - mailhog.wpsite.lndo.site
+    - mh.wpsite.lndo.site
   pma:
     - db.wpsite.lndo.site
