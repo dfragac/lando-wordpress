@@ -29,3 +29,9 @@ proxy:
     - mh.wpsite.lndo.site
   pma:
     - db.wpsite.lndo.site
+
+events:
+  pre-stop:
+    # Database backup
+    - mysqldump --opt --routines --user=wordpress --password=wordpress --host=database --port=3306 wordpress | gzip > /app/wordpress.sql.gz
+    - chown $LANDO_HOST_UID:$LANDO_HOST_GID /app/wordpress.sql.gz
